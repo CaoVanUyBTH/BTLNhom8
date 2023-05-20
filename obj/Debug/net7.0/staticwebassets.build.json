@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "PThWMcg9Qho0Wyhj9G6Nhv1+WmqpkNAaktkFCn69muo=",
+  "Hash": "kSYDLBEbeM2nEsteE2kIYBK/V1GbDEuNNEtnWKagxPw=",
   "Source": "BTLNhom8",
   "BasePath": "_content/BTLNhom8",
   "Mode": "Default",
@@ -66,6 +66,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\site.css"
+    },
+    {
+      "Identity": "C:\\Users\\Asus\\Desktop\\BTL-NHOM8\\BTLNhom8\\wwwroot\\css\\w3.css",
+      "SourceId": "BTLNhom8",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Asus\\Desktop\\BTL-NHOM8\\BTLNhom8\\wwwroot\\",
+      "BasePath": "_content/BTLNhom8",
+      "RelativePath": "css/w3.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\w3.css"
     },
     {
       "Identity": "C:\\Users\\Asus\\Desktop\\BTL-NHOM8\\BTLNhom8\\wwwroot\\favicon.ico",

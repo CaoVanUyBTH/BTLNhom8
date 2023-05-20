@@ -9,6 +9,10 @@
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
+      "Id": "C:\\Users\\Asus\\Desktop\\BTL-NHOM8\\BTLNhom8\\wwwroot\\css\\w3.css",
+      "PackagePath": "staticwebassets\\css\\w3.css"
+    },
+    {
       "Id": "C:\\Users\\Asus\\Desktop\\BTL-NHOM8\\BTLNhom8\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
     },

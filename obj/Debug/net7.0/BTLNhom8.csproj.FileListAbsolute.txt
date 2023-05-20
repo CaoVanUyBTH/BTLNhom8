@@ -226,7 +226,6 @@ C:\Users\Asus\Desktop\BTL-NHOM8\BTLNhom8\bin\Debug\net7.0\ru\Microsoft.CodeAnaly
 C:\Users\Asus\Desktop\BTL-NHOM8\BTLNhom8\bin\Debug\net7.0\tr\Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
 C:\Users\Asus\Desktop\BTL-NHOM8\BTLNhom8\bin\Debug\net7.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
 C:\Users\Asus\Desktop\BTL-NHOM8\BTLNhom8\bin\Debug\net7.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
-C:\Users\Asus\Desktop\BTL-NHOM8\BTLNhom8\bin\Debug\net7.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
 C:\Users\Asus\Desktop\BTL-NHOM8\BTLNhom8\bin\Debug\net7.0\runtimes\alpine-arm\native\libe_sqlite3.so
 C:\Users\Asus\Desktop\BTL-NHOM8\BTLNhom8\bin\Debug\net7.0\runtimes\alpine-arm64\native\libe_sqlite3.so
 C:\Users\Asus\Desktop\BTL-NHOM8\BTLNhom8\bin\Debug\net7.0\runtimes\alpine-x64\native\libe_sqlite3.so
@@ -250,8 +249,6 @@ C:\Users\Asus\Desktop\BTL-NHOM8\BTLNhom8\bin\Debug\net7.0\runtimes\win-arm\nativ
 C:\Users\Asus\Desktop\BTL-NHOM8\BTLNhom8\bin\Debug\net7.0\runtimes\win-arm64\native\e_sqlite3.dll
 C:\Users\Asus\Desktop\BTL-NHOM8\BTLNhom8\bin\Debug\net7.0\runtimes\win-x64\native\e_sqlite3.dll
 C:\Users\Asus\Desktop\BTL-NHOM8\BTLNhom8\bin\Debug\net7.0\runtimes\win-x86\native\e_sqlite3.dll
-C:\Users\Asus\Desktop\BTL-NHOM8\BTLNhom8\bin\Debug\net7.0\runtimes\unix\lib\net6.0\System.Drawing.Common.dll
-C:\Users\Asus\Desktop\BTL-NHOM8\BTLNhom8\bin\Debug\net7.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
 C:\Users\Asus\Desktop\BTL-NHOM8\BTLNhom8\bin\Debug\net7.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\Asus\Desktop\BTL-NHOM8\BTLNhom8\bin\Debug\net7.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
 C:\Users\Asus\Desktop\BTL-NHOM8\BTLNhom8\obj\Debug\net7.0\BTLNhom8.csproj.AssemblyReference.cache
@@ -278,3 +275,9 @@ C:\Users\Asus\Desktop\BTL-NHOM8\BTLNhom8\obj\Debug\net7.0\refint\BTLNhom8.dll
 C:\Users\Asus\Desktop\BTL-NHOM8\BTLNhom8\obj\Debug\net7.0\BTLNhom8.pdb
 C:\Users\Asus\Desktop\BTL-NHOM8\BTLNhom8\obj\Debug\net7.0\BTLNhom8.genruntimeconfig.cache
 C:\Users\Asus\Desktop\BTL-NHOM8\BTLNhom8\obj\Debug\net7.0\ref\BTLNhom8.dll
+C:\Users\Asus\Desktop\BTL-NHOM8\BTLNhom8\bin\Debug\net7.0\EPPlus.dll
+C:\Users\Asus\Desktop\BTL-NHOM8\BTLNhom8\bin\Debug\net7.0\EPPlus.Interfaces.dll
+C:\Users\Asus\Desktop\BTL-NHOM8\BTLNhom8\bin\Debug\net7.0\EPPlus.System.Drawing.dll
+C:\Users\Asus\Desktop\BTL-NHOM8\BTLNhom8\bin\Debug\net7.0\Microsoft.IO.RecyclableMemoryStream.dll
+C:\Users\Asus\Desktop\BTL-NHOM8\BTLNhom8\bin\Debug\net7.0\runtimes\win\lib\net7.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\Asus\Desktop\BTL-NHOM8\BTLNhom8\bin\Debug\net7.0\runtimes\win\lib\net7.0\System.Drawing.Common.dll
