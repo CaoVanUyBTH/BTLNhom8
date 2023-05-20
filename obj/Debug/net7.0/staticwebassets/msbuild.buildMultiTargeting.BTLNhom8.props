@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\BTLNhom8.props" />
+</Project>
