@@ -3,11 +3,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BTLNhom8.Models
 {
-    [Table("Subject")]
-     public class Subject
+    [Table("Monhoc")]
+    public class Monhoc
     {
         [Key]
-        public string SubjectID { get; set; }
-        public string SubjectName { get; set; } //prop
+        public string Ma_mon {get; set; }
+        public string Ten_mon { get; set; }
+
     }
 }

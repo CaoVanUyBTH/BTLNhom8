@@ -3,23 +3,15 @@
 @{
     ViewData["Title"] = "Index";
 }
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<div class="w3-container">
-<h1>Danh sách khoa</h1>
+
+<h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Thêm khoa mới</a>
+    <a asp-action="Create">Create New</a>
 </p>
-<p>
-    <a class="nav-link text-dark" asp-area="" asp-controller="Faculty" asp-action="Upload">Nhập từ Excel</a>
-</p>
-<table class="w3-table-all">
+<table class="table">
     <thead>
-        <tr class="w3-light-blue">
-            <th>
-                @Html.DisplayNameFor(model => model.FacultyID)
-            </th>
+        <tr>
             <th>
                 @Html.DisplayNameFor(model => model.FacultyName)
             </th>
@@ -30,12 +22,8 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.FacultyID)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.FacultyName)
             </td>
-            
             <td>
                 <a asp-action="Edit" asp-route-id="@item.FacultyID">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.FacultyID">Details</a> |

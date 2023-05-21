@@ -7,90 +7,91 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using BTLNhom8.Models;
 using BTLNhom8.Models.Process;
+
 namespace BTLNhom8.Controllers
 {
-    public class FacultyController : Controller
+    public class MonhocController : Controller
     {
         private readonly ApplicationDbContext _context;
         private ExcelProcess _excelProcess = new ExcelProcess();
 
-        public FacultyController(ApplicationDbContext context)
+        public MonhocController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: Faculty
+        // GET: Monhoc
         public async Task<IActionResult> Index()
         {
-              return _context.Faculty != null ? 
-                          View(await _context.Faculty.ToListAsync()) :
-                          Problem("Entity set 'ApplicationDbContext.Faculty'  is null.");
+              return _context.Monhoc != null ? 
+                          View(await _context.Monhoc.ToListAsync()) :
+                          Problem("Entity set 'ApplicationDbContext.Monhoc'  is null.");
         }
 
-        // GET: Faculty/Details/5
+        // GET: Monhoc/Details/5
         public async Task<IActionResult> Details(string id)
         {
-            if (id == null || _context.Faculty == null)
+            if (id == null || _context.Monhoc == null)
             {
                 return NotFound();
             }
 
-            var faculty = await _context.Faculty
-                .FirstOrDefaultAsync(m => m.FacultyID == id);
-            if (faculty == null)
+            var monhoc = await _context.Monhoc
+                .FirstOrDefaultAsync(m => m.Ma_mon == id);
+            if (monhoc == null)
             {
                 return NotFound();
             }
 
-            return View(faculty);
+            return View(monhoc);
         }
 
-        // GET: Faculty/Create
+        // GET: Monhoc/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Faculty/Create
+        // POST: Monhoc/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("FacultyID,FacultyName")] Faculty faculty)
+        public async Task<IActionResult> Create([Bind("Ma_mon,Ten_mon")] Monhoc monhoc)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(faculty);
+                _context.Add(monhoc);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(faculty);
+            return View(monhoc);
         }
 
-        // GET: Faculty/Edit/5
+        // GET: Monhoc/Edit/5
         public async Task<IActionResult> Edit(string id)
         {
-            if (id == null || _context.Faculty == null)
+            if (id == null || _context.Monhoc == null)
             {
                 return NotFound();
             }
 
-            var faculty = await _context.Faculty.FindAsync(id);
-            if (faculty == null)
+            var monhoc = await _context.Monhoc.FindAsync(id);
+            if (monhoc == null)
             {
                 return NotFound();
             }
-            return View(faculty);
+            return View(monhoc);
         }
 
-        // POST: Faculty/Edit/5
+        // POST: Monhoc/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("FacultyID,FacultyName")] Faculty faculty)
+        public async Task<IActionResult> Edit(string id, [Bind("Ma_mon,Ten_mon")] Monhoc monhoc)
         {
-            if (id != faculty.FacultyID)
+            if (id != monhoc.Ma_mon)
             {
                 return NotFound();
             }
@@ -99,12 +100,12 @@ namespace BTLNhom8.Controllers
             {
                 try
                 {
-                    _context.Update(faculty);
+                    _context.Update(monhoc);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!FacultyExists(faculty.FacultyID))
+                    if (!MonhocExists(monhoc.Ma_mon))
                     {
                         return NotFound();
                     }
@@ -115,52 +116,52 @@ namespace BTLNhom8.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(faculty);
+            return View(monhoc);
         }
 
-        // GET: Faculty/Delete/5
+        // GET: Monhoc/Delete/5
         public async Task<IActionResult> Delete(string id)
         {
-            if (id == null || _context.Faculty == null)
+            if (id == null || _context.Monhoc == null)
             {
                 return NotFound();
             }
 
-            var faculty = await _context.Faculty
-                .FirstOrDefaultAsync(m => m.FacultyID == id);
-            if (faculty == null)
+            var monhoc = await _context.Monhoc
+                .FirstOrDefaultAsync(m => m.Ma_mon == id);
+            if (monhoc == null)
             {
                 return NotFound();
             }
 
-            return View(faculty);
+            return View(monhoc);
         }
 
-        // POST: Faculty/Delete/5
+        // POST: Monhoc/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
-            if (_context.Faculty == null)
+            if (_context.Monhoc == null)
             {
-                return Problem("Entity set 'ApplicationDbContext.Faculty'  is null.");
+                return Problem("Entity set 'ApplicationDbContext.Monhoc'  is null.");
             }
-            var faculty = await _context.Faculty.FindAsync(id);
-            if (faculty != null)
+            var monhoc = await _context.Monhoc.FindAsync(id);
+            if (monhoc != null)
             {
-                _context.Faculty.Remove(faculty);
+                _context.Monhoc.Remove(monhoc);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool FacultyExists(string id)
+        private bool MonhocExists(string id)
         {
-          return (_context.Faculty?.Any(e => e.FacultyID == id)).GetValueOrDefault();
+          return (_context.Monhoc?.Any(e => e.Ma_mon == id)).GetValueOrDefault();
         }
         // uploading
-         public async Task<IActionResult>Upload()
+          public async Task<IActionResult>Upload()
         {
             return View();
         }
@@ -185,11 +186,12 @@ namespace BTLNhom8.Controllers
                         var dt = _excelProcess.ExcelToDataTable(fileLocation);
                         for(int i = 0; i< dt.Rows.Count; i++)
                         {
-                            var kh = new Faculty();
-                            kh.FacultyID = dt.Rows[i][0].ToString();
-                            kh.FacultyName = dt.Rows[i][1].ToString();
+                            var emp = new Monhoc();
 
-                            _context.Faculty.Add(kh);
+                            emp.Ma_mon = dt.Rows[i][0].ToString();
+                            emp.Ten_mon = dt.Rows[i][1].ToString();
+
+                            _context.Monhoc.Add(emp);
                         } 
 
                         await _context.SaveChangesAsync();

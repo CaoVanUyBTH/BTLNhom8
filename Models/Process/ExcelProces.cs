@@ -1,7 +1,7 @@
 using System.Data;
 using OfficeOpenXml;
 
-namespace BaiThucHanh2002.Models.Process
+namespace BTLNhom8.Models.Process
 {
     public class ExcelProcess
     {
