@@ -9,4 +9,6 @@ namespace BTLNhom8.Data;
         }
         public DbSet<BTLNhom8.Models.Student> Student { get; set; } = default!;
         public DbSet<BTLNhom8.Models.Faculty> Faculty { get; set; } = default!;
+        public DbSet<BTLNhom8.Models.Subject> Subject { get; set; } = default!;
+
     }

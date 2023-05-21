@@ -2,6 +2,7 @@
 using BTLNhom8.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -9,9 +10,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BTLNhom8.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230520155246_Create_Table_Student")]
+    partial class Create_Table_Student
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.5");
@@ -65,11 +68,17 @@ namespace BTLNhom8.Migrations
                     b.Property<string>("SubjectID")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("StudentID")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("SubjectName")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("SubjectID");
+
+                    b.HasIndex("StudentID");
 
                     b.ToTable("Subject");
                 });
@@ -91,6 +100,17 @@ namespace BTLNhom8.Migrations
                     b.Navigation("Faculty");
 
                     b.Navigation("Subject");
+                });
+
+            modelBuilder.Entity("BTLNhom8.Models.Subject", b =>
+                {
+                    b.HasOne("BTLNhom8.Models.Student", "Student")
+                        .WithMany()
+                        .HasForeignKey("StudentID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Student");
                 });
 #pragma warning restore 612, 618
         }

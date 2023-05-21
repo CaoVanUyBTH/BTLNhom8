@@ -7,12 +7,15 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using BTLNhom8.Data;
 using BTLNhom8.Models;
+using BaiThucHanh2002.Models.Process;
 
 namespace BTLNhom8.Controllers
 {
     public class FacultyController : Controller
     {
         private readonly ApplicationDbContext _context;
+        
+        private ExcelProcess _excelProcess = new ExcelProcess();
 
         public FacultyController(ApplicationDbContext context)
         {
@@ -158,6 +161,46 @@ namespace BTLNhom8.Controllers
         private bool FacultyExists(string id)
         {
           return (_context.Faculty?.Any(e => e.FacultyID == id)).GetValueOrDefault();
+        }
+          // uploading
+          public async Task<IActionResult>Upload()
+        {
+            return View();
+        }
+        [HttpPost]
+          [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Upload(IFormFile file){
+
+            if(file != null){
+                string fileExtension = Path.GetExtension(file.FileName);
+                if(fileExtension != ".xls" && fileExtension != ".xlsx")
+                {
+                    ModelState.AddModelError("","Please choose excel file to upload!");
+                }
+                else{
+                    var fileName = DateTime.Now.ToShortTimeString() + fileExtension;
+                    var filePath = Path.Combine(Directory.GetCurrentDirectory() + "/Uploads/Excels", fileName);
+                    var fileLocation = new FileInfo(filePath).ToString();
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await file.CopyToAsync(stream);
+
+                        var dt = _excelProcess.ExcelToDataTable(fileLocation);
+                        for(int i = 0; i< dt.Rows.Count; i++)
+                        {
+                            var emp = new Faculty();
+
+                            emp.FacultyID = dt.Rows[i][0].ToString();
+                            emp.FacultyName = dt.Rows[i][1].ToString();
+                            _context.Faculty.Add(emp);
+                        } 
+
+                        await _context.SaveChangesAsync();
+                        return RedirectToAction(nameof(Index));
+                    }
+                }
+            }
+            return View();
         }
     }
 }

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BTLNhom8.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230520091007_Create_Table_Student")]
-    partial class Create_Table_Student
+    [Migration("20230520163620_Create_Table_Subject")]
+    partial class Create_Table_Subject
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -50,11 +50,31 @@ namespace BTLNhom8.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("SubjectID")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.HasKey("StudentID");
 
                     b.HasIndex("FacultyID");
 
+                    b.HasIndex("SubjectID");
+
                     b.ToTable("Student");
+                });
+
+            modelBuilder.Entity("BTLNhom8.Models.Subject", b =>
+                {
+                    b.Property<string>("SubjectID")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("SubjectName")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("SubjectID");
+
+                    b.ToTable("Subject");
                 });
 
             modelBuilder.Entity("BTLNhom8.Models.Student", b =>
@@ -65,7 +85,15 @@ namespace BTLNhom8.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("BTLNhom8.Models.Subject", "Subject")
+                        .WithMany()
+                        .HasForeignKey("SubjectID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Faculty");
+
+                    b.Navigation("Subject");
                 });
 #pragma warning restore 612, 618
         }
