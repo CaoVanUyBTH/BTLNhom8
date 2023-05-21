@@ -21,9 +21,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.Faculty)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Monhoc)
-            </th>
             <th></th>
         </tr>
     </thead>
@@ -38,9 +35,6 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Faculty.FacultyID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Monhoc.Ma_mon)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.StudentID">Edit</a> |

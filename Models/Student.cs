@@ -12,9 +12,6 @@ namespace BTLNhom8.Models
         public string FacultyID { get; set; }
         [ForeignKey("FacultyID")]
         public Faculty? Faculty {get; set; }
-        public string Ma_mon { get; set; }
-        [ForeignKey("Ma_mon")]
-        public Monhoc? Monhoc {get; set; }
 
     }
 }

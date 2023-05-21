@@ -6,14 +6,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using BTLNhom8.Models;
-using BTLNhom8.Models.Process;
 
 namespace BTLNhom8.Controllers
 {
     public class MonhocController : Controller
     {
         private readonly ApplicationDbContext _context;
-        private ExcelProcess _excelProcess = new ExcelProcess();
 
         public MonhocController(ApplicationDbContext context)
         {
@@ -23,9 +21,8 @@ namespace BTLNhom8.Controllers
         // GET: Monhoc
         public async Task<IActionResult> Index()
         {
-              return _context.Monhoc != null ? 
-                          View(await _context.Monhoc.ToListAsync()) :
-                          Problem("Entity set 'ApplicationDbContext.Monhoc'  is null.");
+            var applicationDbContext = _context.Monhoc.Include(m => m.Student);
+            return View(await applicationDbContext.ToListAsync());
         }
 
         // GET: Monhoc/Details/5
@@ -37,6 +34,7 @@ namespace BTLNhom8.Controllers
             }
 
             var monhoc = await _context.Monhoc
+                .Include(m => m.Student)
                 .FirstOrDefaultAsync(m => m.Ma_mon == id);
             if (monhoc == null)
             {
@@ -49,6 +47,7 @@ namespace BTLNhom8.Controllers
         // GET: Monhoc/Create
         public IActionResult Create()
         {
+            ViewData["StudentID"] = new SelectList(_context.Student, "StudentID", "StudentID");
             return View();
         }
 
@@ -57,7 +56,7 @@ namespace BTLNhom8.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Ma_mon,Ten_mon")] Monhoc monhoc)
+        public async Task<IActionResult> Create([Bind("Ma_mon,Ten_mon,StudentID,Diem")] Monhoc monhoc)
         {
             if (ModelState.IsValid)
             {
@@ -65,6 +64,7 @@ namespace BTLNhom8.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["StudentID"] = new SelectList(_context.Student, "StudentID", "StudentID", monhoc.StudentID);
             return View(monhoc);
         }
 
@@ -81,6 +81,7 @@ namespace BTLNhom8.Controllers
             {
                 return NotFound();
             }
+            ViewData["StudentID"] = new SelectList(_context.Student, "StudentID", "StudentID", monhoc.StudentID);
             return View(monhoc);
         }
 
@@ -89,7 +90,7 @@ namespace BTLNhom8.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("Ma_mon,Ten_mon")] Monhoc monhoc)
+        public async Task<IActionResult> Edit(string id, [Bind("Ma_mon,Ten_mon,StudentID,Diem")] Monhoc monhoc)
         {
             if (id != monhoc.Ma_mon)
             {
@@ -116,6 +117,7 @@ namespace BTLNhom8.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["StudentID"] = new SelectList(_context.Student, "StudentID", "StudentID", monhoc.StudentID);
             return View(monhoc);
         }
 
@@ -128,6 +130,7 @@ namespace BTLNhom8.Controllers
             }
 
             var monhoc = await _context.Monhoc
+                .Include(m => m.Student)
                 .FirstOrDefaultAsync(m => m.Ma_mon == id);
             if (monhoc == null)
             {
@@ -159,47 +162,6 @@ namespace BTLNhom8.Controllers
         private bool MonhocExists(string id)
         {
           return (_context.Monhoc?.Any(e => e.Ma_mon == id)).GetValueOrDefault();
-        }
-        // uploading
-          public async Task<IActionResult>Upload()
-        {
-            return View();
-        }
-        [HttpPost]
-          [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Upload(IFormFile file){
-
-            if(file != null){
-                string fileExtension = Path.GetExtension(file.FileName);
-                if(fileExtension != ".xls" && fileExtension != ".xlsx")
-                {
-                    ModelState.AddModelError("","Please choose excel file to upload!");
-                }
-                else{
-                    var fileName = DateTime.Now.ToShortTimeString() + fileExtension;
-                    var filePath = Path.Combine(Directory.GetCurrentDirectory() + "/Upload/Excels", fileName);
-                    var fileLocation = new FileInfo(filePath).ToString();
-                    using (var stream = new FileStream(filePath, FileMode.Create))
-                    {
-                        await file.CopyToAsync(stream);
-
-                        var dt = _excelProcess.ExcelToDataTable(fileLocation);
-                        for(int i = 0; i< dt.Rows.Count; i++)
-                        {
-                            var emp = new Monhoc();
-
-                            emp.Ma_mon = dt.Rows[i][0].ToString();
-                            emp.Ten_mon = dt.Rows[i][1].ToString();
-
-                            _context.Monhoc.Add(emp);
-                        } 
-
-                        await _context.SaveChangesAsync();
-                        return RedirectToAction(nameof(Index));
-                    }
-                }
-            }
-            return View();
         }
     }
 }

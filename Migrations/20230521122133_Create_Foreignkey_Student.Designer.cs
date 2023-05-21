@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BTLNhom8.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230521083611_Create_Table_Faculty")]
-    partial class Create_Table_Faculty
+    [Migration("20230521122133_Create_Foreignkey_Student")]
+    partial class Create_Foreignkey_Student
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -37,11 +37,20 @@ namespace BTLNhom8.Migrations
                     b.Property<string>("Ma_mon")
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("Diem")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("StudentID")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Ten_mon")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Ma_mon");
+
+                    b.HasIndex("StudentID");
 
                     b.ToTable("Monhoc");
                 });
@@ -68,6 +77,17 @@ namespace BTLNhom8.Migrations
                     b.HasIndex("FacultyID");
 
                     b.ToTable("Student");
+                });
+
+            modelBuilder.Entity("BTLNhom8.Models.Monhoc", b =>
+                {
+                    b.HasOne("BTLNhom8.Models.Student", "Student")
+                        .WithMany()
+                        .HasForeignKey("StudentID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Student");
                 });
 
             modelBuilder.Entity("BTLNhom8.Models.Student", b =>

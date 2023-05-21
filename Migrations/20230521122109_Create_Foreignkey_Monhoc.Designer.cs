@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BTLNhom8.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230521085057_Create_Foreignkey_Student")]
-    partial class Create_Foreignkey_Student
+    [Migration("20230521122109_Create_Foreignkey_Monhoc")]
+    partial class Create_Foreignkey_Monhoc
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -37,11 +37,20 @@ namespace BTLNhom8.Migrations
                     b.Property<string>("Ma_mon")
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("Diem")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("StudentID")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Ten_mon")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Ma_mon");
+
+                    b.HasIndex("StudentID");
 
                     b.ToTable("Monhoc");
                 });
@@ -52,10 +61,6 @@ namespace BTLNhom8.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("FacultyID")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Ma_mon")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -71,9 +76,18 @@ namespace BTLNhom8.Migrations
 
                     b.HasIndex("FacultyID");
 
-                    b.HasIndex("Ma_mon");
-
                     b.ToTable("Student");
+                });
+
+            modelBuilder.Entity("BTLNhom8.Models.Monhoc", b =>
+                {
+                    b.HasOne("BTLNhom8.Models.Student", "Student")
+                        .WithMany()
+                        .HasForeignKey("StudentID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Student");
                 });
 
             modelBuilder.Entity("BTLNhom8.Models.Student", b =>
@@ -84,15 +98,7 @@ namespace BTLNhom8.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BTLNhom8.Models.Monhoc", "Monhoc")
-                        .WithMany()
-                        .HasForeignKey("Ma_mon")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Faculty");
-
-                    b.Navigation("Monhoc");
                 });
 #pragma warning restore 612, 618
         }

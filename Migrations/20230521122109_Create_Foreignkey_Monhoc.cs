@@ -5,7 +5,7 @@
 namespace BTLNhom8.Migrations
 {
     /// <inheritdoc />
-    public partial class Create_Table_Student : Migration
+    public partial class Create_Foreignkey_Monhoc : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

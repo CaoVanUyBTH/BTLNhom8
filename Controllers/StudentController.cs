@@ -21,7 +21,7 @@ namespace BTLNhom8.Controllers
         // GET: Student
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Student.Include(s => s.Faculty).Include(s => s.Monhoc);
+            var applicationDbContext = _context.Student.Include(s => s.Faculty);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -35,7 +35,6 @@ namespace BTLNhom8.Controllers
 
             var student = await _context.Student
                 .Include(s => s.Faculty)
-                .Include(s => s.Monhoc)
                 .FirstOrDefaultAsync(m => m.StudentID == id);
             if (student == null)
             {
@@ -49,7 +48,6 @@ namespace BTLNhom8.Controllers
         public IActionResult Create()
         {
             ViewData["FacultyID"] = new SelectList(_context.Faculty, "FacultyID", "FacultyID");
-            ViewData["Ma_mon"] = new SelectList(_context.Monhoc, "Ma_mon", "Ma_mon");
             return View();
         }
 
@@ -58,7 +56,7 @@ namespace BTLNhom8.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("StudentID,StudentName,StudentAddress,FacultyID,Ma_mon")] Student student)
+        public async Task<IActionResult> Create([Bind("StudentID,StudentName,StudentAddress,FacultyID")] Student student)
         {
             if (ModelState.IsValid)
             {
@@ -67,7 +65,6 @@ namespace BTLNhom8.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["FacultyID"] = new SelectList(_context.Faculty, "FacultyID", "FacultyID", student.FacultyID);
-            ViewData["Ma_mon"] = new SelectList(_context.Monhoc, "Ma_mon", "Ma_mon", student.Ma_mon);
             return View(student);
         }
 
@@ -85,7 +82,6 @@ namespace BTLNhom8.Controllers
                 return NotFound();
             }
             ViewData["FacultyID"] = new SelectList(_context.Faculty, "FacultyID", "FacultyID", student.FacultyID);
-            ViewData["Ma_mon"] = new SelectList(_context.Monhoc, "Ma_mon", "Ma_mon", student.Ma_mon);
             return View(student);
         }
 
@@ -94,7 +90,7 @@ namespace BTLNhom8.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("StudentID,StudentName,StudentAddress,FacultyID,Ma_mon")] Student student)
+        public async Task<IActionResult> Edit(string id, [Bind("StudentID,StudentName,StudentAddress,FacultyID")] Student student)
         {
             if (id != student.StudentID)
             {
@@ -122,7 +118,6 @@ namespace BTLNhom8.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["FacultyID"] = new SelectList(_context.Faculty, "FacultyID", "FacultyID", student.FacultyID);
-            ViewData["Ma_mon"] = new SelectList(_context.Monhoc, "Ma_mon", "Ma_mon", student.Ma_mon);
             return View(student);
         }
 
@@ -136,7 +131,6 @@ namespace BTLNhom8.Controllers
 
             var student = await _context.Student
                 .Include(s => s.Faculty)
-                .Include(s => s.Monhoc)
                 .FirstOrDefaultAsync(m => m.StudentID == id);
             if (student == null)
             {
