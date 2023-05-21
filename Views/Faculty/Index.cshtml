@@ -7,11 +7,15 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Thêm khoa</a>
+    <a class="nav-link text-dark" asp-area="" asp-controller="Faculty" asp-action="Upload">Nhập từ Excel</a>
 </p>
 <table class="table">
     <thead>
         <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FacultyID)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.FacultyName)
             </th>
@@ -21,6 +25,9 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FacultyID)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.FacultyName)
             </td>
