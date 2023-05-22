@@ -1,0 +1,103 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Trang chủ</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			margin: 0;
+			padding: 0;
+		}
+
+		.header {
+			background-color: #0c66d4;
+	color: #fff;
+			padding: 10px;
+		}
+
+		.container {
+			display: flex;
+			flex-wrap: wrap;
+			margin: 10px;
+		}
+
+		.article {
+			background-color: #f5f5f5;
+			border: 1px solid #ddd;
+			box-shadow: 0 0 5px #ddd;
+			margin: 10px;
+			padding: 10px;
+			width: calc(33.33% - 20px);
+		}
+
+		.article h2 {
+			font-size: 20px;
+			margin: 0 0 5px;
+		}
+
+		.article p {
+			font-size: 14px;
+			margin: 0;
+		}
+
+		.article a {
+			color: #0c66d4;
+			text-decoration: none;
+		}
+
+		.article a:hover {
+			color: #0c66d4;
+			text-decoration: underline;
+		}
+
+		.footer {
+			background-color: #0c66d4;
+			color: #fff;
+			padding: 10px;
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<div class="header">
+		<h1>Trang chủ </h1>
+	</div>
+	<div class="container">
+		<div class="article">
+			<h2>Thông báo lịch thi kết thúc học phần</h2>
+			<p>Đợt thi học kì 2B sẽ diễn ra từ ngày 15/06/2023 - 20/06/2023.</p>
+			<a href="#">Tìm hiểu thêm</a>
+		</div>
+		<div class="article">
+			<h2>Thông báo thời gian giảng viên lên điểm thi cho sinh viên</h2>
+			<p>Thời gian từ ngày 21/06/2023 - 24/06/2023, đề nghị tất cả giảng viên hoàn thành việc nhập điểm thi.</p>
+			<a href="#">Tìm hiểu thêm</a>
+		</div>
+		<div class="article">
+			<h2>Thông báo lịch học kì phụ dự kiến</h2>
+			<p>Thời gian dự kiến bắt đầu học kì phụ năm học 2022 - 2023, diễn ra từ ngày 25/06/2023 - 05/08/2023.</p>
+			<a href="#">Tìm hiểu thêm</a>
+		</div		<div class="article">
+			<h2>Hướng dẫn sử dụng lần đầu App Quản lý nhập điểm sinh viên dành cho giảng viên và giáo viên</h2>
+			<p>App nội bộ dành cho cán bộ, giáo viên, giảng viên trong Trường. Cảnh báo không được để bị rỏ rỉ thông tin.</p>
+			<a href="#">Tìm hiểu thêm</a>
+		</div>
+		<div class="article">
+			<h2>Hướng dẫn sử dụng lần đầu</h2>
+			<p>Để có thể sử dụng hiểu quả, áp dụng nhanh chóng nhất vào nội bộ của trường. Việc hướng dẫn chi tiết sẽ giúp...</p>
+			<a href="#">Tìm hiểu thêm</a>
+		</div>
+		<div class="article">
+			<h2>Cảnh báo bảo mật thấp</h2>
+			<p>Do phần mềm mới chỉ là bước đầu, chưa có tối ưu cũng như hoàn chỉnh. Vậy nên nếu bạn gặp phải vấn đề về lỗi hay có người lạ xâm nhập vào hệ thống. Gọi ngay ...</p>
+			<a href="#">Tìm hiểu chi tiết</a>
+		</div>
+	</div>
+	<div class="footer">
+		<p>Language Training News &copy; 2021</p>
+	</div>
+</body>
+</html>
